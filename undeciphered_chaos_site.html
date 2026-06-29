@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undeciphered Chaos | Brutal Death Metal · Manila</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Cinzel:wght@400;700;900&family=Share+Tech+Mono&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#080608;--deep:#100c10;--panel:#160f16;--edge:#2a1a2a;
+  --blood:#8b0000;--crimson:#cc2200;--ember:#ff4411;
+  --bone:#d4c8b8;--ash:#8a7a7a;--dust:#4a3a3a;
+  --fd:'Metal Mania',cursive;--fs:'Cinzel',serif;
+  --fb:'Libre Baskerville',serif;--fm:'Share Tech Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--bone);font-family:var(--fb);font-size:15px;line-height:1.7;overflow-x:hidden;}
+::selection{background:var(--blood);color:var(--bone);}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:stretch;background:var(--deep);border-bottom:1px solid var(--edge);}
+.nav-brand{padding:0 24px;display:flex;align-items:center;font-family:var(--fd);font-size:14px;color:var(--crimson);letter-spacing:2px;border-right:1px solid var(--edge);white-space:nowrap;}
+.nav-tabs{display:flex;flex:1;}
+.nav-tab{background:none;border:none;padding:16px 28px;font-family:var(--fm);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dust);cursor:pointer;border-right:1px solid var(--edge);transition:color .2s,background .2s;position:relative;}
+.nav-tab:hover{color:var(--bone);background:var(--panel);}
+.nav-tab.active{color:var(--crimson);background:var(--panel);}
+.nav-tab.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--crimson);}
+
+/* HERO */
+.hero{min-height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:64px 24px 48px;background:radial-gradient(ellipse 80% 60% at 50% 100%,#3a000088 0%,transparent 70%),linear-gradient(180deg,#1a0005 0%,var(--black) 100%);border-bottom:1px solid var(--edge);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(139,0,0,.03) 2px,rgba(139,0,0,.03) 4px);pointer-events:none;}
+.hero-sub{font-family:var(--fm);font-size:10px;letter-spacing:6px;color:var(--dust);text-transform:uppercase;margin-bottom:20px;}
+.hero h1{font-family:var(--fd);font-size:clamp(36px,8vw,72px);color:var(--crimson);letter-spacing:6px;line-height:1;text-shadow:0 0 40px rgba(204,34,0,.4),0 0 80px rgba(139,0,0,.2);margin-bottom:20px;}
+.hero-tag{font-family:var(--fs);font-size:13px;letter-spacing:4px;color:var(--ash);text-transform:uppercase;}
+.hero-rule{width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--crimson),transparent);margin:24px auto 0;}
+
+/* SECTIONS */
+.section{display:none;}
+.section.active{display:block;}
+.section-inner{max-width:1100px;margin:0 auto;padding:48px 32px;}
+.section-heading{font-family:var(--fs);font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--crimson);border-bottom:1px solid var(--edge);padding-bottom:12px;margin-bottom:32px;display:flex;align-items:center;gap:16px;}
+.section-heading::before{content:'';display:inline-block;width:4px;height:14px;background:var(--crimson);flex-shrink:0;}
+
+/* YOUTUBE */
+.yt-banner{background:var(--panel);border:1px solid var(--edge);border-left:3px solid var(--crimson);padding:20px 24px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.yt-banner h3{font-family:var(--fd);font-size:18px;color:var(--crimson);margin-bottom:4px;}
+.yt-banner p{font-family:var(--fm);font-size:10px;color:var(--ash);letter-spacing:2px;}
+.yt-note{background:rgba(139,0,0,.08);border:1px solid var(--blood);padding:14px 18px;font-family:var(--fm);font-size:11px;color:var(--ash);letter-spacing:1px;line-height:1.8;margin-bottom:28px;}
+.yt-note strong{color:var(--bone);}
+.yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;}
+.yt-card{background:var(--panel);border:1px solid var(--edge);}
+.yt-card iframe{width:100%;aspect-ratio:16/9;display:block;border:none;}
+.yt-card-body{padding:14px 16px;border-top:1px solid var(--edge);}
+.yt-card-title{font-family:var(--fs);font-size:13px;color:var(--bone);margin-bottom:4px;}
+.yt-card-meta{font-family:var(--fm);font-size:10px;color:var(--dust);letter-spacing:2px;}
+.yt-tip{font-family:var(--fm);font-size:10px;color:var(--dust);letter-spacing:2px;margin-top:28px;text-align:center;}
+
+/* GAMES */
+.games-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;}
+.game-card{background:var(--panel);border:1px solid var(--edge);padding:20px;cursor:pointer;transition:border-color .2s,background .2s;text-align:center;}
+.game-card:hover{border-color:var(--crimson);background:#1a0a0a;}
+.game-emoji{font-size:30px;margin-bottom:10px;}
+.game-title{font-family:var(--fs);font-size:14px;color:var(--crimson);letter-spacing:2px;margin-bottom:6px;}
+.game-desc{font-family:var(--fm);font-size:10px;color:var(--ash);line-height:1.6;letter-spacing:1px;}
+.game-badge{display:inline-block;margin-top:10px;font-family:var(--fm);font-size:9px;letter-spacing:3px;color:var(--crimson);border:1px solid var(--crimson);padding:3px 10px;}
+.game-arena{display:none;}
+.game-arena.active{display:block;}
+.game-hdr{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;background:var(--panel);border:1px solid var(--edge);border-bottom:none;}
+.game-hdr-l{display:flex;align-items:center;gap:16px;}
+.game-hdr span{font-family:var(--fm);font-size:11px;color:var(--ash);letter-spacing:2px;}
+.game-hdr .sc{color:var(--crimson);}
+.game-hdr button{background:none;border:1px solid var(--edge);color:var(--ash);font-family:var(--fm);font-size:10px;padding:4px 12px;cursor:pointer;letter-spacing:2px;}
+.game-hdr button:hover{color:var(--crimson);border-color:var(--crimson);}
+canvas{display:block;width:100%;background:#060406;border:1px solid var(--edge);}
+
+/* MAGAZINE */
+.mag-hdr{background:var(--panel);border:1px solid var(--edge);padding:28px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;}
+.mag-hdr::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(139,0,0,.04) 60px,rgba(139,0,0,.04) 61px);}
+.mag-hdr-inner{position:relative;z-index:1;}
+.mag-name{font-family:var(--fs);font-size:clamp(14px,3vw,22px);color:var(--bone);letter-spacing:3px;line-height:1.4;font-weight:700;}
+.mag-sub{font-family:var(--fm);font-size:10px;color:var(--ash);letter-spacing:5px;margin-top:8px;text-transform:uppercase;}
+.mag-rule{width:160px;height:1px;margin:16px auto;background:linear-gradient(90deg,transparent,var(--crimson),transparent);}
+.mag-issue{display:inline-block;font-family:var(--fm);font-size:10px;color:var(--crimson);letter-spacing:3px;border:1px solid var(--crimson);padding:4px 14px;}
+.fb-note{background:rgba(139,0,0,.08);border:1px solid var(--edge);border-left:3px solid var(--crimson);padding:16px 20px;margin-bottom:24px;font-family:var(--fm);font-size:11px;color:var(--ash);letter-spacing:1px;line-height:1.9;}
+.fb-note strong{color:var(--bone);}
+.fb-wrap{display:flex;justify-content:center;}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--edge);padding:24px 32px;text-align:center;font-family:var(--fm);font-size:10px;color:var(--dust);letter-spacing:3px;}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .nav-brand{display:none;}
+  .nav-tab{padding:14px 16px;font-size:10px;letter-spacing:2px;}
+  .section-inner{padding:32px 16px;}
+  .yt-grid{grid-template-columns:1fr;}
+  .games-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- Facebook SDK -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+  src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0&appId=&autoLogAppEvents=1">
+</script>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">UNDECIPHERED CHAOS</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('songs',this)">Songs</button>
+    <button class="nav-tab" onclick="showTab('games',this)">Games</button>
+    <button class="nav-tab" onclick="showTab('magazine',this)">Magazine</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-sub">Manila, Philippines</div>
+  <h1>UNDECIPHERED CHAOS</h1>
+  <div class="hero-tag">Gothic · Brutal · Death Metal</div>
+  <div class="hero-rule"></div>
+</header>
+
+<!-- ═══════════ SONGS ═══════════ -->
+<section id="tab-songs" class="section active">
+  <div class="section-inner">
+    <div class="section-heading">Official Videos</div>
+
+    <div class="yt-banner">
+      <div>
+        <h3>Undeciphered Chaos</h3>
+        <p>Brutal Death Metal · Manila, Philippines · @undecipheredchaos</p>
+      </div>
+    </div>
+
+    <div class="yt-note">
+      <strong>How to add your songs:</strong> Go to each video on your YouTube channel,
+      copy the video ID from the URL (the part after <code>?v=</code>), then replace
+      <code>YOUR_VIDEO_ID</code> in the HTML source with your actual IDs.
+      The channel playlist embed below will also auto-show your latest uploads.
+    </div>
+
+    <div class="yt-grid">
+
+      <!-- CHANNEL PLAYLIST — auto-loads latest uploads from your channel -->
+      <div class="yt-card">
+        <iframe
+          src="https://www.youtube.com/embed?listType=user_uploads&list=UCjraoT5MOGEJaBQB5uFZ_GQ&rel=0"
+          title="Undeciphered Chaos — Latest Videos"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+        <div class="yt-card-body">
+          <div class="yt-card-title">Latest Uploads</div>
+          <div class="yt-card-meta">@undecipheredchaos · Auto-updated</div>
+        </div>
+      </div>
+
+      <!--
+        ╔═══════════════════════════════════════════╗
+        ║  ADD YOUR SONGS HERE                      ║
+        ║                                           ║
+        ║  Copy this block for each video,          ║
+        ║  replace YOUR_VIDEO_ID with the           ║
+        ║  ID from your YouTube video URL.          ║
+        ║                                           ║
+        ║  Example URL:                             ║
+        ║  youtube.com/watch?v=ABC123               ║
+        ║  → Video ID is: ABC123                    ║
+        ╚═══════════════════════════════════════════╝
+
+        <div class="yt-card">
+          <iframe
+            src="https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0"
+            title="Song Title Here"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+          <div class="yt-card-body">
+            <div class="yt-card-title">Song Title Here</div>
+            <div class="yt-card-meta">Album Name · Year</div>
+          </div>
+        </div>
+      -->
+
+    </div>
+
+    <p class="yt-tip">✦ Add video IDs in the HTML source to embed individual songs ✦</p>
+  </div>
+</section>
+
+<!-- ═══════════ GAMES ═══════════ -->
+<section id="tab-games" class="section">
+  <div class="section-inner">
+    <div class="section-heading">Arcade of Chaos</div>
+
+    <div id="game-lobby">
+      <div class="games-grid">
+        <div class="game-card" onclick="launchGame('tank')">
+          <div class="game-emoji">🎯</div>
+          <div class="game-title">Chaos Tank</div>
+          <div class="game-desc">Blast enemies through a maze of darkness.<br>Arrow keys to move · Space to fire</div>
+          <div class="game-badge">PLAY NOW</div>
+        </div>
+        <div class="game-card" onclick="launchGame('runner')">
+          <div class="game-emoji">💀</div>
+          <div class="game-title">Death Runner</div>
+          <div class="game-desc">Dodge obstacles in the underworld.<br>Space or Up arrow to jump</div>
+          <div class="game-badge">PLAY NOW</div>
+        </div>
+        <div class="game-card" onclick="launchGame('snake')">
+          <div class="game-emoji">👁️</div>
+          <div class="game-title">Soul Eater</div>
+          <div class="game-desc">Consume lost souls before they escape.<br>Arrow keys to move</div>
+          <div class="game-badge">PLAY NOW</div>
+        </div>
+        <div class="game-card" onclick="launchGame('platformer')">
+          <div class="game-emoji">🔥</div>
+          <div class="game-title">Hellforged</div>
+          <div class="game-desc">Platform through infernal levels.<br>Arrow keys to move and jump</div>
+          <div class="game-badge">PLAY NOW</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-arena" id="game-arena">
+      <div class="game-hdr">
+        <div class="game-hdr-l">
+          <span id="g-name">—</span>
+          <span class="sc" id="g-score">SCORE: 0</span>
+        </div>
+        <button onclick="exitGame()">✕ EXIT</button>
+      </div>
+      <canvas id="gc" height="360"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MAGAZINE ═══════════ -->
+<section id="tab-magazine" class="section">
+  <div class="section-inner">
+    <div class="section-heading">Quarterly Magazine</div>
+
+    <div class="mag-hdr">
+      <div class="mag-hdr-inner">
+        <div class="mag-name">THE PHILIPPINE ATHEIST<br>CHURCH OF FREEDOM</div>
+        <div class="mag-rule"></div>
+        <div class="mag-sub">Quarterly Magazine</div>
+        <br>
+        <div class="mag-issue">LIVE FACEBOOK FEED</div>
+      </div>
+    </div>
+
+    <div class="fb-note">
+      <strong>Live Feed</strong> — Posts below are pulled directly from the official
+      Facebook page of The Philippine Atheist Church of Freedom and update automatically.<br><br>
+      <strong>Important:</strong> Facebook embeds only render when the site is hosted online
+      (not opened as a local file). Follow the free hosting instructions below the embed
+      to get this working in minutes.
+    </div>
+
+    <div class="fb-wrap">
+      <div
+        class="fb-page"
+        data-href="https://www.facebook.com/profile.php?id=61568483895058"
+        data-tabs="timeline"
+        data-width="800"
+        data-height="1000"
+        data-small-header="false"
+        data-adapt-container-width="true"
+        data-hide-cover="false"
+        data-show-facepile="true">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  UNDECIPHERED CHAOS · THE PHILIPPINE ATHEIST CHURCH OF FREEDOM · MANILA, PHILIPPINES
+</footer>
+
+<script>
+/* ── TAB SWITCHING ── */
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  if (id !== 'games') exitGame();
+}
+
+/* ── GAMES ── */
+let gLoop = null, gState = {};
+function setScore(v) { document.getElementById('g-score').textContent = 'SCORE: ' + v; }
+
+function launchGame(type) {
+  clearInterval(gLoop);
+  if (gState.kd) document.removeEventListener('keydown', gState.kd);
+  if (gState.ku) document.removeEventListener('keyup', gState.ku);
+  gState = {}; setScore(0);
+  document.getElementById('game-lobby').style.display = 'none';
+  document.getElementById('game-arena').classList.add('active');
+  const cv = document.getElementById('gc');
+  cv.width = cv.parentElement.offsetWidth || 900;
+  cv.height = 360;
+  const cx = cv.getContext('2d');
+  const names = {tank:'CHAOS TANK',runner:'DEATH RUNNER',snake:'SOUL EATER',platformer:'HELLFORGED'};
+  document.getElementById('g-name').textContent = names[type];
+  if (type==='tank') gameTank(cv,cx);
+  else if (type==='runner') gameRunner(cv,cx);
+  else if (type==='snake') gameSnake(cv,cx);
+  else gamePlatformer(cv,cx);
+}
+
+function exitGame() {
+  clearInterval(gLoop);
+  if (gState.kd) document.removeEventListener('keydown', gState.kd);
+  if (gState.ku) document.removeEventListener('keyup', gState.ku);
+  gState = {};
+  document.getElementById('game-lobby').style.display = 'block';
+  document.getElementById('game-arena').classList.remove('active');
+}
+
+/* CHAOS TANK */
+function gameTank(cv, cx) {
+  const W=cv.width, H=cv.height, B=20;
+  let tank={x:50,y:150,dir:'right'}, bullets=[], enemies=[], score=0;
+  const walls=[
+    {x:120,y:50,w:20,h:100},{x:240,y:190,w:20,h:100},
+    {x:370,y:50,w:100,h:20},{x:500,y:220,w:20,h:100},
+    {x:310,y:130,w:20,h:80},{x:160,y:270,w:120,h:20},
+    {x:600,y:80,w:20,h:80}
+  ];
+  for(let i=0;i<5;i++) enemies.push({x:400+Math.random()*250,y:30+Math.random()*270,dir:['left','up','right','down'][i%4],ti:0});
+  const keys={};
+  gState.kd=e=>{
+    if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();
+    keys[e.code]=true;
+    if(e.code==='Space'){const dx=tank.dir==='right'?8:tank.dir==='left'?-8:0;const dy=tank.dir==='down'?8:tank.dir==='up'?-8:0;bullets.push({x:tank.x+B/2,y:tank.y+B/2,dx,dy});}
+  };
+  gState.ku=e=>{keys[e.code]=false;};
+  document.addEventListener('keydown',gState.kd); document.addEventListener('keyup',gState.ku);
+  const cw=(x,y)=>walls.some(w=>x<w.x+w.w&&x+B>w.x&&y<w.y+w.h&&y+B>w.y);
+  gLoop=setInterval(()=>{
+    if(keys.ArrowRight)tank.dir='right'; else if(keys.ArrowLeft)tank.dir='left'; else if(keys.ArrowDown)tank.dir='down'; else if(keys.ArrowUp)tank.dir='up';
+    const nx=tank.x+(keys.ArrowRight?3:keys.ArrowLeft?-3:0);
+    const ny=tank.y+(keys.ArrowDown?3:keys.ArrowUp?-3:0);
+    if(!cw(nx,tank.y)&&nx>0&&nx<W-B)tank.x=nx;
+    if(!cw(tank.x,ny)&&ny>0&&ny<H-B)tank.y=ny;
+    bullets=bullets.filter(b=>{b.x+=b.dx;b.y+=b.dy;return b.x>0&&b.x<W&&b.y>0&&b.y<H&&!cw(b.x,b.y);});
+    bullets.forEach(b=>{enemies=enemies.filter(e=>{if(Math.abs(b.x-e.x)<B&&Math.abs(b.y-e.y)<B){score+=10;setScore(score);return false;}return true;});});
+    enemies.forEach(e=>{e.ti++;if(e.ti>50){e.dir=['left','right','up','down'][Math.floor(Math.random()*4)];e.ti=0;}const ex=e.x+(e.dir==='right'?2:e.dir==='left'?-2:0);const ey=e.y+(e.dir==='down'?2:e.dir==='up'?-2:0);if(!cw(ex,e.y)&&ex>0&&ex<W-B)e.x=ex;if(!cw(e.x,ey)&&ey>0&&ey<H-B)e.y=ey;});
+    if(enemies.length===0)for(let i=0;i<5;i++)enemies.push({x:Math.random()*300+400,y:Math.random()*280+30,dir:'left',ti:0});
+    cx.fillStyle='#060406';cx.fillRect(0,0,W,H);
+    walls.forEach(w=>{cx.fillStyle='#1a0a1a';cx.fillRect(w.x,w.y,w.w,w.h);cx.strokeStyle='#3a1a2a';cx.lineWidth=1;cx.strokeRect(w.x,w.y,w.w,w.h);});
+    cx.fillStyle='#cc2200';cx.fillRect(tank.x,tank.y,B,B);
+    cx.fillStyle='#ff4411';cx.fillRect(tank.x+B/2-3,tank.y+B/2-3,6,6);
+    enemies.forEach(e=>{cx.fillStyle='#7a1a0a';cx.fillRect(e.x,e.y,B,B);cx.fillStyle='#cc5500';cx.fillRect(e.x+B/2-3,e.y+B/2-3,6,6);});
+    cx.fillStyle='#ffcc00';bullets.forEach(b=>{cx.beginPath();cx.arc(b.x,b.y,4,0,Math.PI*2);cx.fill();});
+  },33);
+}
+
+/* DEATH RUNNER */
+function gameRunner(cv, cx) {
+  const W=cv.width,H=cv.height,GY=H-70;
+  let p={x:80,y:GY,vy:0,on:true},obs=[],score=0,speed=4,fr=0,dead=false;
+  gState.kd=e=>{if((e.code==='Space'||e.code==='ArrowUp')&&p.on&&!dead){p.vy=-14;p.on=false;}};
+  document.addEventListener('keydown',gState.kd);
+  gLoop=setInterval(()=>{
+    if(dead)return;
+    fr++;score=Math.floor(fr/3);setScore(score);
+    if(fr%65===0)obs.push({x:W,h:20+Math.floor(Math.random()*45)});
+    p.vy+=0.65;p.y+=p.vy;
+    if(p.y>=GY){p.y=GY;p.vy=0;p.on=true;}
+    speed=4+fr/400;
+    obs=obs.filter(o=>{o.x-=speed;return o.x>-30;});
+    if(obs.some(o=>p.x+20>o.x&&p.x<o.x+22&&p.y+22>GY+4-o.h)){
+      dead=true;cx.fillStyle='rgba(0,0,0,.65)';cx.fillRect(0,0,W,H);
+      cx.fillStyle='#cc2200';cx.font='bold 20px Share Tech Mono';cx.textAlign='center';
+      cx.fillText('CRUSHED — RESTARTING...',W/2,H/2);
+      setTimeout(()=>gameRunner(cv,cx),1800);return;
+    }
+    cx.fillStyle='#060406';cx.fillRect(0,0,W,H);
+    cx.strokeStyle='#2a1a2a';cx.lineWidth=1;cx.beginPath();cx.moveTo(0,GY+22);cx.lineTo(W,GY+22);cx.stroke();
+    cx.fillStyle='#cc2200';cx.fillRect(p.x,p.y,20,22);
+    cx.fillStyle='#5a1a0a';obs.forEach(o=>{cx.fillRect(o.x,GY+22-o.h,22,o.h);cx.strokeStyle='#cc2200';cx.strokeRect(o.x,GY+22-o.h,22,o.h);});
+  },33);
+}
+
+/* SOUL EATER */
+function gameSnake(cv, cx) {
+  const W=cv.width,H=cv.height,S=22;
+  const cols=Math.floor(W/S),rows=Math.floor(H/S);
+  let p={x:5,y:5,dx:1,dy:0},tail=[{x:5,y:5}],souls=[{x:15,y:8},{x:20,y:12}],score=0,fr=0;
+  gState.kd=e=>{
+    if(e.code==='ArrowRight'&&p.dx!==-1){p.dx=1;p.dy=0;}
+    else if(e.code==='ArrowLeft'&&p.dx!==1){p.dx=-1;p.dy=0;}
+    else if(e.code==='ArrowDown'&&p.dy!==-1){p.dx=0;p.dy=1;}
+    else if(e.code==='ArrowUp'&&p.dy!==1){p.dx=0;p.dy=-1;}
+  };
+  document.addEventListener('keydown',gState.kd);
+  gLoop=setInterval(()=>{
+    fr++;if(fr%8!==0)return;
+    const nx=p.x+p.dx,ny=p.y+p.dy;
+    if(nx<0||nx>=cols||ny<0||ny>=rows||tail.slice(0,-1).some(t=>t.x===nx&&t.y===ny)){
+      cx.fillStyle='rgba(0,0,0,.7)';cx.fillRect(0,0,W,H);
+      cx.fillStyle='#cc2200';cx.font='18px Share Tech Mono';cx.textAlign='center';
+      cx.fillText('SCATTERED — RESTARTING',W/2,H/2);
+      clearInterval(gLoop);setTimeout(()=>gameSnake(cv,cx),1500);return;
+    }
+    tail.push({x:nx,y:ny});p.x=nx;p.y=ny;
+    const ai=souls.findIndex(s=>s.x===nx&&s.y===ny);
+    if(ai>-1){score+=10;setScore(score);souls.splice(ai,1);souls.push({x:Math.floor(Math.random()*cols),y:Math.floor(Math.random()*rows)});}
+    else tail.shift();
+    cx.fillStyle='#060406';cx.fillRect(0,0,W,H);
+    souls.forEach(s=>{cx.fillStyle='#3a0a1a';cx.beginPath();cx.arc(s.x*S+S/2,s.y*S+S/2,8,0,Math.PI*2);cx.fill();cx.fillStyle='#cc2200';cx.beginPath();cx.arc(s.x*S+S/2,s.y*S+S/2,5,0,Math.PI*2);cx.fill();});
+    tail.forEach((t,i)=>{cx.fillStyle=i===tail.length-1?'#cc2200':'#6a1a0a';cx.fillRect(t.x*S+1,t.y*S+1,S-2,S-2);});
+  },33);
+}
+
+/* HELLFORGED */
+function gamePlatformer(cv, cx) {
+  const W=cv.width,H=cv.height;
+  let p={x:60,y:200,vx:0,vy:0,on:false},score=0,camX=0;
+  const plats=[
+    {x:0,y:H-60,w:260},{x:300,y:H-115,w:160},{x:510,y:H-170,w:140},
+    {x:700,y:H-130,w:150},{x:910,y:H-190,w:170},{x:1140,y:H-150,w:160},{x:1380,y:H-210,w:130}
+  ];
+  const coins=[];
+  plats.forEach(pl=>{for(let i=0;i<Math.floor(pl.w/55);i++)coins.push({x:pl.x+28+i*55,y:pl.y-24,got:false});});
+  const keys={};
+  gState.kd=e=>{keys[e.code]=true;};
+  gState.ku=e=>{keys[e.code]=false;};
+  document.addEventListener('keydown',gState.kd);
+  document.addEventListener('keyup',gState.ku);
+  gLoop=setInterval(()=>{
+    p.vx=keys.ArrowRight?5:keys.ArrowLeft?-5:0;
+    if((keys.ArrowUp||keys.Space)&&p.on){p.vy=-13;p.on=false;}
+    p.vy+=0.55;p.x+=p.vx;p.y+=p.vy;
+    p.on=false;
+    plats.forEach(pl=>{if(p.x+20>pl.x&&p.x<pl.x+pl.w&&p.y+24>=pl.y&&p.y+24<=pl.y+18&&p.vy>=0){p.y=pl.y-24;p.vy=0;p.on=true;}});
+    coins.forEach(c=>{if(!c.got&&Math.abs(p.x+10-c.x)<20&&Math.abs(p.y+12-c.y)<20){c.got=true;score+=5;setScore(score);}});
+    if(p.y>H+80){p.y=200;p.x=60;p.vy=0;}
+    camX=Math.max(0,p.x-W/3);
+    cx.fillStyle='#060406';cx.fillRect(0,0,W,H);
+    plats.forEach(pl=>{cx.fillStyle='#1a0510';cx.fillRect(pl.x-camX,pl.y,pl.w,20);cx.strokeStyle='#cc2200';cx.lineWidth=1;cx.strokeRect(pl.x-camX,pl.y,pl.w,20);});
+    coins.forEach(c=>{if(!c.got){cx.fillStyle='#ffaa00';cx.beginPath();cx.arc(c.x-camX,c.y,6,0,Math.PI*2);cx.fill();}});
+    cx.fillStyle='#cc2200';cx.fillRect(p.x-camX,p.y,20,24);
+  },33);
+}
+</script>
+</body>
+</html>
